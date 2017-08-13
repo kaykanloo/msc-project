@@ -8,15 +8,15 @@ class Dataset:
         self.dataset = h5py.File(file,'r')
         
         # (index, height, width, channels)
-        self.images = np.array(dataset['Images']).transpose([3,2,1,0])
-        self.normals = np.array(dataset['Normals']).transpose([3,2,1,0])
-        self.masks = np.array(dataset['Masks']).transpose([2,1,0])
-        self.rotations = np.array(dataset['Rotations']).transpose([2,0,1])
+        self.images = np.array(self.dataset['Images']).transpose([3,2,1,0])
+        self.normals = np.array(self.dataset['Normals']).transpose([3,2,1,0])
+        self.masks = np.array(self.dataset['Masks']).transpose([2,1,0])
+        self.rotations = np.array(self.dataset['Rotations']).transpose([2,0,1])
         # Image height and width
         self.width = self.images.shape[2]
         self.height = self.images.shape[1]
         # Number of samples in the dataset 
-        self.size = images.shape[0]
+        self.size = self.images.shape[0]
         # Queue for choosing the samples
         self.queue = []
         
@@ -28,9 +28,9 @@ class Dataset:
         maxWidthIndex = self.width - width
         widthIndex = np.random.randint(0,maxWidthIndex)
         
-        imgCrop = images[index, heightIndex:heightIndex+height, widthIndex:widthIndex+width, :]
-        normCrop = normals[index, heightIndex:heightIndex+height, widthIndex:widthIndex+width, :]
-        maskCrop = masks[index, heightIndex:heightIndex+height, widthIndex:widthIndex+width]
+        imgCrop = self.images[index, heightIndex:heightIndex+height, widthIndex:widthIndex+width, :]
+        normCrop = self.normals[index, heightIndex:heightIndex+height, widthIndex:widthIndex+width, :]
+        maskCrop = self.masks[index, heightIndex:heightIndex+height, widthIndex:widthIndex+width]
         
         return imgCrop, normCrop, maskCrop
     
