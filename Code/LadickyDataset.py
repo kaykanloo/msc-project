@@ -124,7 +124,7 @@ class LadickyDataset:
         return self.queue.pop()
         
     def get_batch(self, batch_size=32):
-        
+        ''' A batch with data augmentation '''
         images = np.empty([batch_size, self.height, self.width, 3], dtype=np.float32)
         normals = np.empty([batch_size, self.height, self.width, 3], dtype=np.float32)
         
@@ -136,3 +136,19 @@ class LadickyDataset:
         (outImgs, outNorms) = self.sess.run((self.tfOutImgs,self.tfOutNorms),
                                             feed_dict={self.tfImgs: images, self.tfNorms: normals})
         return outImgs, outNorms
+    
+    def get_data(self, index):
+        ''' Resized original data: Image and normal map'''
+        
+        image = self.images[index,:,:,:]
+        normals = self.normals[index,:,:,:]
+
+        tfSize = tf.constant([self.batch_height,self.batch_width], dtype=tf.int32)
+        tfImg = tf.constant(image)
+        tfNorms = tf.constant(normals)         
+        reszImgs = tf.image.resize_images(tfImg, tfSize)
+        reszNorms = tf.image.resize_images(tfNorms, tfSize)
+        normNorms = tf.nn.l2_normalize(reszNorms, 2)
+        (outImg, outNorms) = self.sess.run((reszImgs, normNorms))
+                
+        return outImg, outNorms
