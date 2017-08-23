@@ -65,7 +65,7 @@ if __name__ == "__main__":
     
     # Parameters
     batchSize = 64
-    epochs = 50
+    epochs = 2
     totalBatches = ceil(dataset.size/batchSize)
     
     # Training Loop
@@ -78,9 +78,11 @@ if __name__ == "__main__":
             imgs, norms = dataset.get_batch(batchSize)
             loss = model.train_on_batch(imgs, norms)
             print('Loss: ' + str(loss))   
-        # Saving the model
-        print('Saving the model...')
-        model.save('../Data/'+ args.ExperimentID + '-model.h5')
+        if(epoch % 5 == 0):
+            # Saving the model
+            print('Saving the model...')
+            model.save('../Data/'+ args.ExperimentID + '-model.h5')
+        # Estimating the remaining time
         end = time.perf_counter()
         rem = divmod((epochs-epoch-1)*(end-start),60)
         print('Remaining time: '+str(round(rem[0]))+' minute(s) and '+ str(round(rem[1]))+ ' seconds')
