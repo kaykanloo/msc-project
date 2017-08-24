@@ -64,8 +64,8 @@ if __name__ == "__main__":
     model = vgg16_model()
     
     # Parameters
-    batchSize = 64
-    epochs = 2
+    batchSize = 32
+    epochs = 10
     totalBatches = ceil(dataset.size/batchSize)
     
     # Training Loop
@@ -78,7 +78,7 @@ if __name__ == "__main__":
             imgs, norms = dataset.get_batch(batchSize)
             loss = model.train_on_batch(imgs, norms)
             print('Loss: ' + str(loss))   
-        if(epoch % 5 == 0):
+        if( (epoch+1) % 5 == 0):
             # Saving the model
             print('Saving the model...')
             model.save('../Data/'+ args.ExperimentID + '-model.h5')
