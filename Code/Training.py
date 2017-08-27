@@ -69,7 +69,7 @@ if __name__ == "__main__":
     totalBatches = ceil(dataset.size/batchSize)
     
     # Training Loop
-    print('Training...')
+    print('Training '+args.ExperimentID+'...')
     for epoch in range(epochs):
         print('------------------------------------------')
         start = time.perf_counter()
