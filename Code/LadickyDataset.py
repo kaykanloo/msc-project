@@ -1,10 +1,10 @@
 import h5py
 import numpy as np
 import tensorflow as tf
-from random import shuffle
+import random
 
 class LadickyDataset:
-    def __init__(self, file, subset=None,
+    def __init__(self, file, subset=None, seed=1,
                  batch_res=(240,320), scale=(1.0,1.5), flip=True, rotation=5, color=True, brightness=True):
         '''
         subset: A list of the index of images
@@ -49,12 +49,17 @@ class LadickyDataset:
         # Queue for choosing the samples
         self.queue = []
         
+        # Random seed
+        self.seed = seed
+        random.seed(seed)
+        
         # Building the computional graph
         self._build_tf_graph()
     
     def _build_tf_graph(self):
         
         # Creating the tf session
+        tf.set_random_seed(self.seed)
         self.sess = tf.Session()
         
         # Input placeholders
@@ -119,7 +124,7 @@ class LadickyDataset:
         
         if (len(self.queue) == 0):
             self.queue = self.validIndices[:]
-            shuffle(self.queue)
+            random.shuffle(self.queue)
         
         return self.queue.pop()
         
