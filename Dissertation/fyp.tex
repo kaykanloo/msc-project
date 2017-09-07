@@ -1,0 +1,32 @@
+\documentclass[11pt,a4paper,twoside]{book}
+
+%include the configuration file for layout
+%Have a look in this file it has some useful commands defined
+\input{config.tex}
+
+\begin{document}
+%The prelude is everything upto the start of chapter 1
+\include{prelude}
+
+% Change to arabic numerals
+\pagenumbering{arabic}
+
+%include as many chapters as you have.
+%the chapters are in a directory called Chapters
+\include{./Chapters/Introduction}
+\include{./Chapters/Background}
+\include{./Chapters/Dataset}
+\include{./Chapters/ModelArchitecture}
+\include{./Chapters/Training}
+\include{./Chapters/EvaluationAndResults}
+\include{./Chapters/Conclusion}
+
+%Adds References to the table of content
+%all you bibtex enteries go in the file called refs.bib
+\addcontentsline{toc}{chapter}{References}
+\bibliography{refs}
+
+%any appendices you have go in a file called appendix.
+\include{appendix}
+\end{document}
+
