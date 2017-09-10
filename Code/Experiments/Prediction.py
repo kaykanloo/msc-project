@@ -1,5 +1,7 @@
 # Imports
-import tensorflow as tf 
+import tensorflow as tf
+from keras.models import load_model
+import numpy as np
 from PIL import Image
 from scipy.io import savemat
 
@@ -35,7 +37,7 @@ def Predict(ID, Dataset):
     # Prediction Loop
     print('Normal Estimation...')
     index = 0
-    for i in testNdxs:
+    for i in dataset.validIndices:
         print('Index: '+str(i))
         images[index], normals[index] = dataset.get_data(i)
         preds[index] = model.predict_on_batch(images[index].reshape((1,dataset.batch_height, dataset.batch_width, 3 )))
