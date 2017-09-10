@@ -25,7 +25,7 @@ from keras.utils.data_utils import get_file
 WEIGHTS_PATH_NO_TOP = 'https://github.com/fchollet/deep-learning-models/releases/download/v0.1/vgg16_weights_tf_dim_ordering_tf_kernels_notop.h5'
 
 
-def VGG16(weights='imagenet',
+def model(weights='imagenet',
           input_shape=(240, 320, 3)):
     """Instantiates the VGG16-based architecture.
 
@@ -93,7 +93,7 @@ def VGG16(weights='imagenet',
     x = Reshape((60,80,3))(x)
     x = Lambda(lambda x: tf.image.resize_bilinear(x , [240,320]) )(x)
     x = Lambda(lambda x: tf.nn.l2_normalize(x, 3) )(x)
-    
+
     # Create model.
     inputs = img_input
     model = Model(inputs, x, name='vgg16')
@@ -104,5 +104,5 @@ def VGG16(weights='imagenet',
                                 WEIGHTS_PATH_NO_TOP,
                                 cache_subdir='models')
         model.load_weights(weights_path, by_name=True)
-    
+
     return model
