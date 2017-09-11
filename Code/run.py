@@ -3,6 +3,7 @@ import argparse
 import configparser
 from Experiments.Training import Train
 from Experiments.Prediction import Predict
+from Experiments.Evaluation import Evaluate
 
 if __name__ == '__main__':
     # Command line arguments
@@ -44,7 +45,15 @@ if __name__ == '__main__':
             exec('from DataSets.'+config['PREDICTION']['dataset']+' import Dataset')
             Predict(args.ConfigID, Dataset)
     # Evaluation
-    elif (args.Command == 'evaluation') and ('EVALUATION' in config):
-        print('For evaluation run the matlab script.')
+    elif (args.Command == 'evaluation'):
+        if os.path.exists('Experiments/Outputs/'+ args.ConfigID + '.eval'):
+            print('Evaluation results (Experiments/Outputs/'+ args.ConfigID + '.eval)'+' already exists. Please (re)move this file before trying again.')
+        else:
+            if not os.path.exists('Experiments/Outputs/'+ args.ConfigID + '.mat'):
+                print('Predicted normals file (Experiments/Outputs/'+ args.ConfigID + '.mat)'+' is missing.')
+            else:
+                from scipy.io import loadmat
+                mat = loadmat('Experiments/Outputs/'+ args.ConfigID + '.mat')
+                Evaluate(args.ConfigID, mat['Normals'], mat['Predictions'])
     else:
         print("Invalid command or config file.")
