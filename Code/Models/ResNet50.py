@@ -9,6 +9,8 @@ Adapted from code contributed by BigMoyan.
 
 import warnings
 
+import tensorflow as tf
+from keras import layers
 from keras.layers import Input
 from keras.layers import Dense
 from keras.layers import Activation
