@@ -57,19 +57,19 @@ def Predict(ID, Dataset, resize=False):
     if(resize):
         # Initialisation
         Norms = np.empty([dataset.size, dataset.height, dataset.width, 3], dtype=np.float32)
-        # Original normal maps
-        index = 0
-        for i in dataset.validIndices:
-            Norms[index] = dataset.normals[i]
-            index += 1
+        Preds = np.empty([dataset.size, dataset.height, dataset.width, 3], dtype=np.float32)
         # Resizing the predictions to the original height and width of data set
-        with tf.device('/cpu:0'):
-            tfSize = tf.constant([dataset.height,dataset.width], dtype=tf.int32)
-            tfPreds = tf.constant(preds)
-            reszPreds = tf.image.resize_images(tfPreds, tfSize)
-            normPreds = tf.nn.l2_normalize(reszPreds, 2)
-        sess = tf.Session()
-        Preds = sess.run(normPreds)
+        tfSize = tf.constant([dataset.height,dataset.width], dtype=tf.int32)
+        tfPreds = tf.placeholder("float", None)
+        reszPreds = tf.image.resize_images(tfPreds, tfSize)
+        normPreds = tf.nn.l2_normalize(reszPreds, 2)
+        with tf.Session() as session:
+            index = 0
+            for i in dataset.validIndices:
+                Norms[index] = dataset.normals[i]
+                Preds[index] = session.run(normPreds, feed_dict={tfPreds: preds[index]})
+                index += 1
+                
         # Saving the results
         savemat('Experiments/Outputs/'+ ID + '.mat',{'Predictions': Preds, 'Normals': Norms})
     else:
