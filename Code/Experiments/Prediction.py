@@ -19,7 +19,7 @@ def mean_dot_product(y_true, y_pred):
     return -1 * mean
 
 # Prediction
-def Predict(ID, Dataset, resize=False):
+def Predict(ID, Dataset):
     
     # Load data set
     print('Loading the data set...')
@@ -53,24 +53,5 @@ def Predict(ID, Dataset, resize=False):
         out.paste(norm.copy(), (0,norm.size[1]))
         out.paste(pred.copy(), (0,norm.size[1]+pred.size[1]))
         out.save('Experiments/Outputs/'+ID+'/'+str(i)+'.png')
-    
-    if(resize):
-        # Initialisation
-        Norms = np.empty([dataset.size, dataset.height, dataset.width, 3], dtype=np.float32)
-        Preds = np.empty([dataset.size, dataset.height, dataset.width, 3], dtype=np.float32)
-        # Resizing the predictions to the original height and width of data set
-        tfSize = tf.constant([dataset.height,dataset.width], dtype=tf.int32)
-        tfPreds = tf.placeholder("float", [preds.shape(1), preds.shape(2), 3])
-        reszPreds = tf.image.resize_images(tfPreds, tfSize)
-        normPreds = tf.nn.l2_normalize(reszPreds, 2)
-        with tf.Session() as session:
-            index = 0
-            for i in dataset.validIndices:
-                Norms[index] = dataset.normals[i]
-                Preds[index] = session.run(normPreds, feed_dict={tfPreds: preds[index]})
-                index += 1
-                
-        # Saving the results
-        savemat('Experiments/Outputs/'+ ID + '.mat',{'Predictions': Preds, 'Normals': Norms})
-    else:
-        savemat('Experiments/Outputs/'+ ID + '.mat',{'Predictions': preds, 'Normals': normals})
+        
+    savemat('Experiments/Outputs/'+ ID + '.mat',{'Predictions': preds, 'Normals': normals})
