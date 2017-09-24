@@ -19,7 +19,7 @@ def mean_dot_product(y_true, y_pred):
     return -1 * mean
 
 # Prediction
-def Predict(ID, Dataset):
+def Predict(ID, Dataset, resize=False):
     
     # Load data set
     print('Loading the data set...')
@@ -37,7 +37,7 @@ def Predict(ID, Dataset):
     # Prediction Loop
     print('Normal Estimation...')
     index = 0
-    for i in dataset.validIndices:
+    for i in testNdxs:
         print('Index: '+str(i))
         images[index], normals[index] = dataset.get_data(i)
         preds[index] = model.predict_on_batch(images[index].reshape((1,dataset.batch_height, dataset.batch_width, 3 )))
@@ -53,5 +53,23 @@ def Predict(ID, Dataset):
         out.paste(norm.copy(), (0,norm.size[1]))
         out.paste(pred.copy(), (0,norm.size[1]+pred.size[1]))
         out.save('Experiments/Outputs/'+ID+'/'+str(i)+'.png')
-        
-    savemat('Experiments/Outputs/'+ ID + '.mat',{'Predictions': preds, 'Normals': normals})
+    
+    if(resize):
+        # Initialisation
+        Norms = np.empty([dataset.size, dataset.height, dataset.width, 3], dtype=np.float32)
+        # Original normal maps
+        index = 0
+        for i in dataset.validIndices:
+            Norms[index] = dataset.normals[i]
+            index += 1
+        # Resizing the predictions to the original height and width of data set
+        tfSize = tf.constant([dataset.height,dataset.width], dtype=tf.int32)
+        tfPreds = tf.constant(preds)
+        reszPreds = tf.image.resize_images(tfPreds, tfSize)
+        normPreds = tf.nn.l2_normalize(reszPreds, 2)
+        sess = tf.Session()
+        Preds = sess.run(normPreds)
+        # Saving the results
+        savemat('Experiments/Outputs/'+ ID + '.mat',{'Predictions': Preds, 'Normals': Norms})
+    else:
+        savemat('Experiments/Outputs/'+ ID + '.mat',{'Predictions': preds, 'Normals': normals})
