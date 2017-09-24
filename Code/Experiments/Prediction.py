@@ -67,7 +67,11 @@ def Predict(ID, Dataset, resize=False):
         tfPreds = tf.constant(preds)
         reszPreds = tf.image.resize_images(tfPreds, tfSize)
         normPreds = tf.nn.l2_normalize(reszPreds, 2)
-        sess = tf.Session()
+        # Switching to CPU for more than 2GB variables
+        config = tf.ConfigProto(
+            device_count = {'GPU': 0}
+        )
+        sess = tf.Session(config=config)
         Preds = sess.run(normPreds)
         # Saving the results
         savemat('Experiments/Outputs/'+ ID + '.mat',{'Predictions': Preds, 'Normals': Norms})
