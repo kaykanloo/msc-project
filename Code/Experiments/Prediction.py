@@ -60,7 +60,7 @@ def Predict(ID, Dataset, resize=False):
         Preds = np.empty([dataset.size, dataset.height, dataset.width, 3], dtype=np.float32)
         # Resizing the predictions to the original height and width of data set
         tfSize = tf.constant([dataset.height,dataset.width], dtype=tf.int32)
-        tfPreds = tf.placeholder("float", None)
+        tfPreds = tf.placeholder("float", [preds.shape(1), preds.shape(2), 3])
         reszPreds = tf.image.resize_images(tfPreds, tfSize)
         normPreds = tf.nn.l2_normalize(reszPreds, 2)
         with tf.Session() as session:
