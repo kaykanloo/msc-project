@@ -1,4 +1,6 @@
-%% Building the Data set
+%% Building the Data Set 
+
+% loading images and depth maps
 load('./Data/nyu_depth_v2_labeled.mat', 'images');
 load('./Data/nyu_depth_v2_labeled.mat', 'rawDepths');
 
