@@ -43,7 +43,7 @@ if __name__ == '__main__':
         if clean:
             os.makedirs('Experiments/Outputs/'+args.ConfigID+'/')
             exec('from DataSets.'+config['PREDICTION']['dataset']+' import Dataset')
-            Predict(args.ConfigID, Dataset, config['PREDICTION']['resize']=='True')
+            Predict(args.ConfigID, Dataset)
     # Evaluation
     elif (args.Command == 'evaluation'):
         if os.path.exists('Experiments/Outputs/'+ args.ConfigID + '.eval'):

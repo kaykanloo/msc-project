@@ -40,9 +40,9 @@ def model(input_shape=(240, 320, 3)):
 
     # Top Layers
     x = Flatten()(x)
-    x = Dense(4096, activation='relu', name='fc1')(x)
-    x = Dense(80*60*3, activation='relu', name='fc2')(x)
-    x = Reshape((60,80,3))(x)
+    x = Dense(80*60*3, activation='relu', name='fc1')(x)
+    x = Dense(40*54*3, activation='relu', name='fc2')(x)
+    x = Reshape((40,54,3))(x)
     x = Lambda(lambda x: tf.image.resize_bilinear(x , [240,320]) )(x)
     x = Lambda(lambda x: tf.nn.l2_normalize(x, 3) )(x)
     

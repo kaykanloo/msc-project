@@ -10,7 +10,7 @@ from keras.layers import Input
 from keras.layers import Reshape
 from keras.layers import Lambda
 from keras.layers import Conv2D
-from keras.layers import MaxPooling2D
+from keras.layers import AveragePooling2D
 
 def model(input_shape=(240, 320, 3)):
     """Instantiates the baseline architecture.
@@ -31,9 +31,9 @@ def model(input_shape=(240, 320, 3)):
     img_input = Input(shape=input_shape)
 
     x = Conv2D(64, (5, 5), activation='relu', padding='same', name='conv1')(img_input)
-    x = MaxPooling2D((2, 2), strides=(2, 2), name='pool1')(x)
+    x = AveragePooling2D((2, 2), strides=(2, 2), name='pool1')(x)
     x = Conv2D(192, (3, 3), activation='relu', padding='same', name='conv2')(x)
-    x = MaxPooling2D((2, 2), strides=(2, 2), name='pool2')(x)
+    x = AveragePooling2D((2, 2), strides=(2, 2), name='pool2')(x)
     x = Conv2D(384, (3, 3), activation='relu', padding='same', name='conv3')(x)
     x = Conv2D(256, (3, 3), activation='relu', padding='same', name='conv4')(x)
     x = Conv2D(3, (3, 3), activation='relu', padding='same', name='conv5')(x)

@@ -36,12 +36,11 @@ def model(input_shape=(240, 320, 3)):
     x = MaxPooling2D((2, 2), strides=(2, 2), name='pool2')(x)
     x = Conv2D(384, (3, 3), activation='relu', padding='same', name='conv3')(x)
     x = Conv2D(256, (3, 3), activation='relu', padding='same', name='conv4')(x)
-    x = Conv2D(3, (3, 3), activation='relu', padding='same', name='conv5')(x)
+    x = Conv2D(3, (1, 1), activation='relu', padding='same', name='conv5')(x)
 
     # Top Layers
     x = Flatten()(x)
-    x = Dense(4096, activation='relu', name='fc1')(x)
-    x = Dense(80*60*3, activation='relu', name='fc2')(x)
+    x = Dense(80*60*3, activation='relu', name='fc1')(x)
     x = Reshape((60,80,3))(x)
     x = Lambda(lambda x: tf.image.resize_bilinear(x , [240,320]) )(x)
     x = Lambda(lambda x: tf.nn.l2_normalize(x, 3) )(x)

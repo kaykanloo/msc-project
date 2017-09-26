@@ -11,6 +11,7 @@ from keras.layers import Reshape
 from keras.layers import Lambda
 from keras.layers import Conv2D
 from keras.layers import MaxPooling2D
+from keras.layers import UpSampling2D
 
 def model(input_shape=(240, 320, 3)):
     """Instantiates the baseline architecture.
@@ -43,7 +44,7 @@ def model(input_shape=(240, 320, 3)):
     x = Dense(4096, activation='relu', name='fc1')(x)
     x = Dense(80*60*3, activation='relu', name='fc2')(x)
     x = Reshape((60,80,3))(x)
-    x = Lambda(lambda x: tf.image.resize_bilinear(x , [240,320]) )(x)
+    x = UpSampling2D(size=4)(x)
     x = Lambda(lambda x: tf.nn.l2_normalize(x, 3) )(x)
     
     # Create model.
