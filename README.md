@@ -44,7 +44,7 @@ You can find the list of experiments in ./Code/Experiments/ConfigFiles/ director
 
 The results are stored in ./Code/Experiments/Outputs/ directory.
 
-## Estimated surface normal maps
+## Estimated Surface Normal Maps
 * Baseline model trained on main data set: https://s3.eu-west-2.amazonaws.com/kaykanloo-mscproject/Baseline.tar.gz
 
 * VGG16 based model trained on main data set: https://s3.eu-west-2.amazonaws.com/kaykanloo-mscproject/VGG16.tar.gz
