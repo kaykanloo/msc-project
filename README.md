@@ -44,6 +44,13 @@ You can find the list of experiments in ./Code/Experiments/ConfigFiles/ director
 
 The results are stored in ./Code/Experiments/Outputs/ directory.
 
+## Estimated surface normal maps
+* Baseline model trained on main data set: https://s3.eu-west-2.amazonaws.com/kaykanloo-mscproject/Baseline.tar.gz
+
+* VGG16 based model trained on main data set: https://s3.eu-west-2.amazonaws.com/kaykanloo-mscproject/VGG16.tar.gz
+
+* VGG16 based model trained on SUN data set: https://s3.eu-west-2.amazonaws.com/kaykanloo-mscproject/SUNVGG16.tar.gz
+
 ## Reproducing the Data Sets (Optional)
 Instead of downloading the data sets, you can use the MATLAB source codes for recomputing the surface normal maps. 
 
