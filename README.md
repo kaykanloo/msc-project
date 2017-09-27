@@ -43,3 +43,18 @@ Change your current working directory to ./Code
 You can find the list of experiments in ./Code/Experiments/ConfigFiles/ directory.   
 
 The results are stored in ./Code/Experiments/Outputs/ directory.
+
+## Reproducing the Data Sets (Optional)
+Instead of downloading the data sets, you can use the MATLAB source codes for recomputing the surface normal maps. 
+
+You need to donwnload the corresponding data files for each data set:
+
+* Original NYU Depth V.2: http://horatio.cs.nyu.edu/mit/silberman/nyu_depth_v2/nyu_depth_v2_labeled.mat
+
+* Ladicky surface normal maps: https://s3.eu-west-2.amazonaws.com/kaykanloo-mscproject/Ladicky.tar.gz
+
+(Provided by https://www.inf.ethz.ch/personal/ladickyl/nyu_normals_gt.zip )
+
+* SUN RGB-D Data set: http://rgbd.cs.princeton.edu/data/SUNRGBD.zip
+
+
