@@ -1,3 +1,5 @@
+% This file is adapted from NYU Depth V2 Toolbox
+% URL: http://cs.nyu.edu/~silberman/datasets/nyu_depth_v2.html
 % Projects the depth points from the image plane to the 3D world
 % coordinates.
 %

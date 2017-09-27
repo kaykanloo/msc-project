@@ -1,3 +1,5 @@
+% This file is adapted from NYU Depth V2 Toolbox
+% URL: http://cs.nyu.edu/~silberman/datasets/nyu_depth_v2.html
 % Computes local surface normal information. Note that in this file, the Y
 % coordinate points up, consistent with the image coordinate frame.
 %
