@@ -16,20 +16,28 @@ Finally, well-established evaluation metrics were implemented and the quantitati
 ## Instructions:
 It is recommended to run this code on a system with at least one GPU with 12GB of memory. 
 
-Download and install MiniConda for Python 3.6 from: https://conda.io/miniconda.html
+Download and install MiniConda for Python 3.6 from: https://conda.io/miniconda.html 
+
 Install TensorFlow library by entering: conda install tensorflow-gpu
+
 Install Keras library by : conda install keras
+
 Install Pillow library: conda install pillow
 
 Download a data set and put it under ./Code/DataSets/MAT/ path. You may need to create the MAT directory. 
 
 * Main dataset: https://s3.eu-west-2.amazonaws.com/kaykanloo-mscproject/NYUDataSet.mat
+
 * Alternative data set: https://s3.eu-west-2.amazonaws.com/kaykanloo-mscproject/NYUAltDataSet.mat
+
 * SUN RGB-D based data set: https://s3.eu-west-2.amazonaws.com/kaykanloo-mscproject/SUNDataSet.mat
 
 Change your current working directory to ./Code
+
 To train an experiment: python run.py training ConfigFileName
+
 For produce the output of the network: python run.py prediction ConfigFileName
+
 To evaluate the results: python run.py evaluation ConfigFileName
 
 You can find the list of experiments under ./Code/Experiments/ConfigFiles/ directory.   
