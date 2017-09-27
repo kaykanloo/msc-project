@@ -34,11 +34,11 @@ Download a data set and put it in ./Code/DataSets/MAT/ directory. You may need t
 
 Change your current working directory to ./Code
 
-To train an experiment: python run.py training ConfigFileName
+* For training: python run.py training ConfigFileName
 
-For produce the output of the network: python run.py prediction ConfigFileName
+* To produce the output of the network: python run.py prediction ConfigFileName
 
-To evaluate the results: python run.py evaluation ConfigFileName
+* To evaluate the results: python run.py evaluation ConfigFileName
 
 You can find the list of experiments in ./Code/Experiments/ConfigFiles/ directory.   
 
