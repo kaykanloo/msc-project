@@ -24,7 +24,7 @@ Install Keras library by : conda install keras
 
 Install Pillow library: conda install pillow
 
-Download a data set and put it under ./Code/DataSets/MAT/ path. You may need to create the MAT directory. 
+Download a data set and put it in ./Code/DataSets/MAT/ directory. You may need to create the MAT directory. 
 
 * Main dataset: https://s3.eu-west-2.amazonaws.com/kaykanloo-mscproject/NYUDataSet.mat
 
@@ -40,5 +40,6 @@ For produce the output of the network: python run.py prediction ConfigFileName
 
 To evaluate the results: python run.py evaluation ConfigFileName
 
-You can find the list of experiments under ./Code/Experiments/ConfigFiles/ directory.   
+You can find the list of experiments in ./Code/Experiments/ConfigFiles/ directory.   
 
+The results are stored in ./Code/Experiments/Outputs/ directory.
