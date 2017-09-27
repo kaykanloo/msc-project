@@ -1,4 +1,4 @@
-# M.Sc. Project Report
+# M.Sc. Project
 ## Title: 
 Surface Normal Estimation from RGB Images
 ## Degree: 
