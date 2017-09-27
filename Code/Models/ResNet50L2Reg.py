@@ -4,7 +4,7 @@
 
 - [Deep Residual Learning for Image Recognition](https://arxiv.org/abs/1512.03385)
 
-Adapted from code contributed by BigMoyan.
+Code based on the original Keras library implementation source code
 """
 
 import warnings
