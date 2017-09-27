@@ -1,4 +1,41 @@
 \chapter{Conclusion}
-\label{Conclusion}
 
-\lipsum[1-1]
+Based on the quantitative evaluation of the models, no statistically significant change to the outcome was made by changing the size or number of the filters in last convolutional layer of baseline model. Use of average pooling instead of max pooling in the network, considerably decreased the performance. A larger outer fully connected layer did not make any difference in the results, while larger inner fully connected layer decreased the performance of the network. By removing the first fully connected layer, the performance was degraded considerably and the application of a different up sampling method was not able to make any difference.
+
+Overall, the VGG16 model had the best performance between the implemented architectures. Using the lower and higher parts of the network decreased the performance, while using the mid layers made no difference in output. 
+
+Surprisingly, both of the more complex models, the model that used the concatenation of different layers in VGG16, and the ResNet50, had a very bad performance. One can argue that the main reason for this might be the lack of enough training data.
+
+By using the data set based on the SUN RGB-D, the performance of baseline model decreased but VGG16 showed a better performance. This indicates that more complex models could benefit from training on a higher quality data set.
+
+The results show a large gap between the surface normal maps estimated by models of this project and the state of the art. Although it worth noting that the state of the art models are trained on a much larger data set (200K samples from raw NYU data set). 
+
+\subsection{Achievements}
+
+Based on the objectives defined for this project, an analysis of the previous research was conducted. The published source codes were studied and the network architectures were compared. Finally, the weaknesses and points of strength in each model were discussed in section \ref{sec:relatedwork}. 
+
+Data required for use in this project was obtained from two publicly available data sets. MATLAB code was developed to compute the ground truth surface normal maps based on two different methods and the results were used to produce the final data sets. 
+
+A deep learning pipeline was developed and several different network architectures were designed and implemented. Various experiments were conducted to explore the improvements to the baseline model. 
+
+Finally, well-established evaluation metrics were implemented and the quantitative and qualitative result of evaluation were presented and compared to the state of the art methods.  
+
+\subsection{Future Work}
+
+Improving the result of this project is possible based on two previously mentioned aspects: designing better network architectures and the use of more and higher quality training data. The state of the art models are trained on a much larger data set (200K samples from raw data set in comparison to 795 samples from training data set that were used in this project). In this project only a subset of SUN RGB-D data set was used. Using all the samples of the SUN RGB-D data set or the raw data from NYU Depth data set, to train the models designed in this project and comparing the results is another subject for investigation.
+
+Designing network architectures that utilise several different levels of data representation looks as a good direction for developing future models. Also, the structure of the top layers of the network is an area which is not explored in depth and may yield improved results. 
+
+\subsection{Personal Reflection}
+
+After getting the confirmation about the topic of my MSc project, I decided to do a comprehensive background research before starting the work on project. Although reading tens of scientific articles and understanding the various technical or theoretical concepts was difficult, my knowledge about the field of computer vision was considerably improved. Sometimes understanding concepts that were described in a few sentences in an article, needed a vast amount of background knowledge. The background research helped me to have a clear understanding of the problem and inspired most of the solutions to the various problems arose during the project.  
+
+Implementing a working pipeline and a baseline model was very challenging. Although the length of the final source codes was relatively small, almost for implementing every functionality, spending many days and referring to various documentations was needed. Learning all the required deep learning concepts and software libraries such as TensorFlow in a short period of time was not an easy task. 
+
+One of the main challenges in this project was the computational resources needed for training and evaluation of the models. Working on my laptop or PC was not possible due to limited GPU processing power. I remotely used the HPC servers provided by university for running and debugging the models. Having a limited access with a command line interface to the server was one of the other challenges. Because it was not possible to use the root account, automatically installing software packages was not feasible. A lot of time was spent for finding workarounds for setting up the development environment on the servers. 
+
+The raw data set was very big (400GB) and after running MATLAB batch jobs for several days for computing the surface normals; due to resource constraints it was not possible to actually use this data in this project. Also, using two different programming languages (MATLAB and python) for different components of the project and maintaining the interoperability between these components was another challenge in this project.
+
+Developing and testing the code in interactive development environments (MATLAB scripts and Jupyter notebooks for python) was very effective in debugging and testing the code and experimenting different code snippets. It was always possible to check the value of variables at any point instead of using a more traditional debugging approach. By using git version control system, the code management and synchronisation between servers and development environment was made much easier. 
+
+Finally, using LaTeX for writing the report and managing the documents on a version control system considerably increased my productivity in the last phase of this project.  

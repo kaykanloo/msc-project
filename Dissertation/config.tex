@@ -6,14 +6,22 @@
 \usepackage[T1]{fontenc}
 \usepackage{textcomp}
 \usepackage{epsfig,graphics}
+\usepackage[font=small,justification=centering]{caption}
 \usepackage{graphicx}
 \usepackage{titlesec}
+\usepackage[style=numeric,sorting=none]{biblatex}
+\usepackage{siunitx}
+\usepackage{wrapfig}
+\usepackage{subcaption}
+\usepackage{color}
+\usepackage{multirow}
+\usepackage{hyperref}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Details of your dissertation
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand{\projectTitle}{Estimating Surfaces from Images}
+\newcommand{\projectTitle}{Surface Normal Estimation from RGB Images}
 \newcommand{\fullname}{Mohammad Kaykanloo}
 \newcommand{\degreeTitle}{MSc Advanced Computer Science (Intelligent Systems)}
 \newcommand{\session}{2016/2017}
@@ -23,11 +31,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  \geometry{
  a4paper,
- total={210mm,297mm},
  left=25mm,
  right=25mm,
  top=25mm,
  bottom=20mm,
+ heightrounded,
  }
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -52,10 +60,18 @@
 \DeclareTextCommandDefault{\textcopyright}{\textcircled{c}}
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Bibliography style: choose one and make sure you have the relevant .bst file
+% Bibliography
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\bibliographystyle{abbrv}
+\DefineBibliographyStrings{english}{%
+  bibliography = {References},
+  references = {References},
+}
+\addbibresource{refs.bib}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Images default path
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\graphicspath{ {Images/} }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Layout for the front cover !!!!! YOU SHOULD NOT HAVE TO CHANGE THIS!!!!!
@@ -104,3 +120,8 @@
 			\textbf{Summary}
 		\end{center}}%
 	{\vfill \null }
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% License line of captions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\caplicense}[1]{\\ \scriptsize \textit{#1}}
