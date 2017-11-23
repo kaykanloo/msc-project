@@ -2,7 +2,7 @@
 ## Title: 
 Surface Normal Estimation from RGB Images
 ## Degree: 
-Master of Science in Advance Computer Science
+MSc with Distinction, Advance Computer Science (Intelligent Systems) 
 
 University of Leeds, UK
 ## Summary:
